@@ -1,0 +1,2 @@
+include ':app', ':simple-call-adapter'
+rootProject.name='BaseProject'

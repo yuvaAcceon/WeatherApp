@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="text_app_requires_mandatory_permissions">Application requires some mandatory permissions, please accept to proceed.</string>
+    <string name="text_go_to_setting">Go to settings and enable permissions for the denied.</string>
+
+</resources>
