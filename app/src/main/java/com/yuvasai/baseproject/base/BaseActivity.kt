@@ -1,6 +1,9 @@
 package com.yuvasai.baseproject.base
 
+import android.app.Dialog
 import android.content.pm.ActivityInfo
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -10,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.yuvasai.baseproject.BR
+import com.yuvasai.baseproject.R
 import com.yuvasai.baseproject.utils.observe
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
@@ -26,6 +30,7 @@ abstract class BaseActivity<IViewModel : BaseViewModel, Binding : ViewDataBindin
     protected abstract val layoutId: Int
     protected lateinit var binding: Binding
     protected abstract val viewModelClass: KClass<IViewModel>
+    private var dialog: Dialog? = null
 
     protected val viewModel: IViewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(viewModelClass.java)
@@ -52,9 +57,31 @@ abstract class BaseActivity<IViewModel : BaseViewModel, Binding : ViewDataBindin
                 ErrorTemplate.NO_INTERNET -> {
                     println("=================no_internet==============")
                 }
+                ErrorTemplate.DEFAULT_LOADER_SHOW -> {
+                    showDialog()
+                }
+                ErrorTemplate.DEFAULT_LOADER_DISMISS -> {
+                    cancelDialog()
+                }
             }
             viewModel.systemAlertListener.set(ErrorTemplate.NONE)
         }
 
     }
+
+    fun showDialog() {
+        dialog = Dialog(this)
+        dialog?.setCanceledOnTouchOutside(false)
+        dialog?.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.setContentView(R.layout.progressbar)
+        dialog?.setCancelable(false)
+        dialog?.show()
+    }
+
+    fun cancelDialog() {
+        if (dialog != null) {
+            dialog?.dismiss()
+        }
+    }
+
 }

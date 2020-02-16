@@ -39,4 +39,12 @@ abstract class BaseViewModel : ViewModel() {
         Log.d(this.javaClass.canonicalName, "Error=$message")
     }
 
+    fun showDefaultLoader() {
+        systemAlertListener.set(ErrorTemplate.DEFAULT_LOADER_SHOW)
+    }
+
+    fun dismissDefaultLoader() {
+        systemAlertListener.set(ErrorTemplate.DEFAULT_LOADER_DISMISS)
+    }
+
 }

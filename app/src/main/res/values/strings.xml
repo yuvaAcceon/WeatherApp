@@ -2,5 +2,10 @@
     <string name="app_name">Weather</string>
     <string name="text_app_requires_mandatory_permissions">Application requires some mandatory permissions, please accept to proceed.</string>
     <string name="text_go_to_setting">Go to settings and enable permissions for the denied.</string>
+    <string name="label_current_temperature">Current Temperature</string>
+    <string name="label_failed">Failed </string>
+    <string name="label_retry">Retry</string>
+    <string name="label_retry_forecast">Retry Forecast</string>
+    <string name="label_next_5_days">Temperature forecast for the next 5 days:</string>
 
 </resources>
